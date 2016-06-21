@@ -1,0 +1,1168 @@
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: grey;
+  font-size: 1.6rem;
+  font-family: "Sintony", sans-serif;
+  color: #eaf2e3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+a {
+  color: #c0a672;
+  text-decoration: none;
+}
+
+.cd-image-replace {
+  /* replace text with image */
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+}
+
+/* --------------------------------
+
+Navigation trigger - visible on small devices only
+
+-------------------------------- */
+.cd-nav-trigger {
+  display: block;
+  position: fixed;
+  z-index: 5;
+  bottom: 30px;
+  right: 5%;
+  height: 44px;
+  width: 44px;
+  border-radius: 0.25em;
+  background: rgba(234, 242, 227, 0.9);
+  /* reset button style */
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+}
+.cd-nav-trigger span {
+  /* central dot */
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  background-color: #3a2c41;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+.cd-nav-trigger span::before, .cd-nav-trigger span::after {
+  /* bottom and top dots */
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #3a2c41;
+  border-radius: inherit;
+}
+.cd-nav-trigger span::before {
+  top: -9px;
+}
+.cd-nav-trigger span::after {
+  bottom: -9px;
+}
+@media only screen and (min-width: 800px) {
+  .cd-nav-trigger {
+    display: none;
+  }
+}
+
+/* --------------------------------
+
+Vertical navigation
+
+-------------------------------- */
+.cd-vertical-nav {
+  position: fixed;
+  z-index: 4;
+  right: 5%;
+  bottom: 30px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90%;
+  overflow-y: auto;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transform-origin: right bottom;
+  -moz-transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
+  -o-transform-origin: right bottom;
+  transform-origin: right bottom;
+  -webkit-transition: -webkit-transform 0.2s;
+  -moz-transition: -moz-transform 0.2s;
+  transition: transform 0.2s;
+  border-radius: 0.25em;
+  background-color: rgba(234, 242, 227, 0.9);
+}
+.cd-vertical-nav a {
+  display: block;
+  padding: 1em;
+  color: #3a2c41;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(58, 44, 65, 0.1);
+}
+.cd-vertical-nav a.active {
+  color: #c0a672;
+}
+.cd-vertical-nav.open {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-overflow-scrolling: touch;
+}
+.cd-vertical-nav.open + .cd-nav-trigger {
+  background-color: transparent;
+}
+.cd-vertical-nav.open + .cd-nav-trigger span {
+  background-color: rgba(58, 44, 65, 0);
+}
+.cd-vertical-nav.open + .cd-nav-trigger span::before, .cd-vertical-nav.open + .cd-nav-trigger span::after {
+  /* transform dots in 'X' icon */
+  height: 3px;
+  width: 20px;
+  border-radius: 0;
+  left: -8px;
+}
+.cd-vertical-nav.open + .cd-nav-trigger span::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 1px;
+}
+.cd-vertical-nav.open + .cd-nav-trigger span::after {
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  bottom: 0;
+}
+@media only screen and (min-width: 800px) {
+  .cd-vertical-nav {
+    /* reset style */
+    right: 0;
+    top: 0;
+    bottom: auto;
+    height: 100vh;
+    width: 90px;
+    max-width: none;
+    max-height: none;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    background-color: transparent;
+    /* vertically align its content*/
+    display: table;
+  }
+  .cd-vertical-nav::before {
+    /* this is the navigation background */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    transition: transform 0.4s;
+  }
+  .no-touch .cd-vertical-nav:hover::before, .touch .cd-vertical-nav::before {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+  .cd-vertical-nav ul {
+    /* vertically align <ul> inside <nav>*/
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .cd-vertical-nav a {
+    position: relative;
+    padding: 3em 0 0;
+    margin: 1.4em auto;
+    border-bottom: none;
+    font-size: 1.2rem;
+    color: #eaf2e3;
+  }
+  .cd-vertical-nav a.active {
+    color: #eaf2e3;
+  }
+  .cd-vertical-nav a::before, .cd-vertical-nav a::after {
+    /* used to create the filled circle and the background icon */
+    content: '';
+    position: absolute;
+    left: 50%;
+    /* Force Hardware Acceleration */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .cd-vertical-nav a::before {
+    /* filled circle */
+    top: 0;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: #eaf2e3;
+    -webkit-transform: translateX(-50%) scale(0.25);
+    -moz-transform: translateX(-50%) scale(0.25);
+    -ms-transform: translateX(-50%) scale(0.25);
+    -o-transform: translateX(-50%) scale(0.25);
+    transform: translateX(-50%) scale(0.25);
+    -webkit-transition: -webkit-transform 0.4s, background-color 0.2s;
+    -moz-transition: -moz-transform 0.4s, background-color 0.2s;
+    transition: transform 0.4s, background-color 0.2s;
+  }
+  .cd-vertical-nav a::after {
+    /* icon */
+    opacity: 0;
+    top: 8px;
+    height: 16px;
+    width: 16px;
+    background: url(../img/cd-nav-icons.svg) no-repeat;
+    -webkit-transform: translateX(-50%) scale(0);
+    -moz-transform: translateX(-50%) scale(0);
+    -ms-transform: translateX(-50%) scale(0);
+    -o-transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) scale(0);
+    -webkit-transition: -webkit-transform 0.4s 0s, opacity 0.1s 0.3s;
+    -moz-transition: -moz-transform 0.4s 0s, opacity 0.1s 0.3s;
+    transition: transform 0.4s 0s, opacity 0.1s 0.3s;
+  }
+  .cd-vertical-nav a.active::before, .no-touch .cd-vertical-nav a:hover::before {
+    background-color: #c0a672;
+  }
+  .cd-vertical-nav li:first-of-type a::after {
+    /* change icon using image sprites */
+    background-position: 0px -48px;
+    /* fix bug with transitions - set scale(0.01) rather than scale(0) */
+    -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(4.5em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(4.5em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(4.5em) scale(0.01);
+    transform: translateX(-50%) translateY(4.5em) scale(0.01);
+  }
+  .cd-vertical-nav li:first-of-type a::before {
+    -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(4.5em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(4.5em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(4.5em) scale(0.25);
+    transform: translateX(-50%) translateY(4.5em) scale(0.25);
+  }
+  .cd-vertical-nav li:nth-of-type(2) a::after {
+    background-position: 0px -32px;
+    -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(1.5em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(1.5em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(1.5em) scale(0.01);
+    transform: translateX(-50%) translateY(1.5em) scale(0.01);
+  }
+  .cd-vertical-nav li:nth-of-type(2) a::before {
+    -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(1.5em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(1.5em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(1.5em) scale(0.25);
+    transform: translateX(-50%) translateY(1.5em) scale(0.25);
+  }
+  .cd-vertical-nav li:nth-of-type(3) a::after {
+    background-position: 0px -16px;
+    -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+    transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+  }
+  .cd-vertical-nav li:nth-of-type(3) a::before {
+    -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+    transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+  }
+  .cd-vertical-nav li:nth-of-type(4) a::after {
+    background-position: 0px 0px;
+    -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+    transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+  }
+  .cd-vertical-nav li:nth-of-type(4) a::before {
+    -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+    transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+  }
+  .cd-vertical-nav .label {
+    display: block;
+    /* Force Hardware Acceleration */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    transition: transform 0.4s;
+  }
+  .no-touch .cd-vertical-nav:hover a::before, .no-touch .cd-vertical-nav:hover a::after, .touch .cd-vertical-nav li:nth-of-type(n) a::before, .touch .cd-vertical-nav li:nth-of-type(n) a::after {
+    -webkit-transform: translateX(-50%) scale(1);
+    -moz-transform: translateX(-50%) scale(1);
+    -ms-transform: translateX(-50%) scale(1);
+    -o-transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
+    /* set a rotation to fix bug on Firefox - http://gielberkers.com/how-to-fix-shaking-css-transitions-in-firefox/ */
+    -moz-transform: translateX(-50%) scale(1) rotate(0.02deg);
+  }
+  .no-touch .cd-vertical-nav:hover a::after, .touch .cd-vertical-nav a::after {
+    opacity: 1;
+    -webkit-transition: -webkit-transform 0.4s, opacity 0s;
+    -moz-transition: -moz-transform 0.4s, opacity 0s;
+    transition: transform 0.4s, opacity 0s;
+  }
+  .no-touch .cd-vertical-nav:hover .label, .touch .cd-vertical-nav .label {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+
+/* --------------------------------
+
+Content Sections - basic style
+
+-------------------------------- */
+.cd-section{
+  /* vertically align its content*/
+  width: 100%;
+  height: 100vh;
+  position: table;
+}
+header{
+  margin-left:3%;
+}
+/* --------------------------------
+
+no-js
+
+-------------------------------- */
+.no-js .cd-nav-trigger {
+  display: none;
+}
+
+.no-js .cd-vertical-nav {
+  position: static;
+  height: auto;
+  width: 100%;
+  max-width: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.no-js .cd-vertical-nav::before {
+  display: none;
+}
+.no-js .cd-vertical-nav ul::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.no-js .cd-vertical-nav li {
+  display: inline-block;
+  float: left;
+}
+.no-js .cd-vertical-nav a {
+  padding: 0 1em;
+  margin: 1.5em 1em;
+  color: #eaf2e3;
+}
+.no-js .cd-vertical-nav a.selected {
+  color: #c0a672;
+}
+.no-js .cd-vertical-nav a::after, .no-js .cd-vertical-nav a::before {
+  display: none;
+}
+.no-js .cd-vertical-nav .label {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+/* hero slider */
+
+.cd-slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* hide horizontal scrollbar on IE11 */
+  overflow: hidden;
+}
+.cd-slider-wrapper .cd-slider, .cd-slider-wrapper .cd-slider > li {
+  height: 100%;
+  width: 100%;
+}
+
+.cd-slider > li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  /* used to vertically center its content */
+  display: table;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.cd-slider > li.visible {
+  /* selected slide */
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+}
+.cd-slider > li:first-of-type {
+  background-color: #4a3553;
+  background-image: url(../img/img-1.jpg);
+}
+.cd-slider > li:nth-of-type(2) {
+  background-color: #ffb251;
+  background-image: url(../img/img-2.jpg);
+}
+.cd-slider > li:nth-of-type(3) {
+  background-color: #7d7160;
+  background-image: url(../img/img-3.jpg);
+}
+.cd-slider > li:nth-of-type(4) {
+  background-color: #ff625a;
+  background-image: url(../img/img-4.jpg);
+}
+.cd-slider > li:first-of-type, .cd-slider > li:nth-of-type(2), .cd-slider > li:nth-of-type(3), .cd-slider > li:nth-of-type(4) {
+  background-size: cover;
+}
+.cd-slider > li > div {
+  /* vertically center the slider content */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.cd-slider > li h2, .cd-slider > li p {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
+  margin: 0 auto 14px;
+  color: #ffffff;
+  width: 90%;
+  max-width: 320px;
+}
+.cd-slider > li h2 {
+  font-size: 2.4rem;
+}
+.cd-slider > li p {
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+.cd-slider > li .cd-btn {
+  display: inline-block;
+  padding: 1.2em 1.4em;
+  margin-top: .8em;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: .25em;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.no-touch .cd-slider > li .cd-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+@media only screen and (min-width: 768px) {
+  .cd-slider > li h2, .cd-slider > li p {
+    max-width: 520px;
+  }
+  .cd-slider > li h2 {
+    font-size: 2.4em;
+    font-weight: 300;
+  }
+  .cd-slider > li .cd-btn {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cd-slider > li h2, .cd-slider > li p {
+    margin-bottom: 20px;
+  }
+  .cd-slider > li h2 {
+    font-size: 3.2em;
+  }
+  .cd-slider > li p {
+    font-size: 1.8rem;
+  }
+}
+
+/* --------------------------------
+
+svg cover layer
+
+-------------------------------- */
+.cd-svg-cover {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+.cd-svg-cover path {
+  fill: #ffe8c9;
+}
+.cd-svg-cover.is-animating {
+  z-index: 6;
+  opacity: 1;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+
+/*
+-----------------------------------------------------------
+horizontal timeline
+------------------------------------------------------------
+*/
+
+
+
+.cd-horizontal-timeline {
+  opacity: 0;
+  margin: 2em auto;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.cd-horizontal-timeline::before {
+  /* never visible - this is used in jQuery to check the current MQ */
+  content: 'mobile';
+  display: none;
+}
+.cd-horizontal-timeline.loaded {
+  /* show the timeline after events position has been set (using JavaScript) */
+  opacity: 1;
+}
+.cd-horizontal-timeline .timeline {
+  position: relative;
+  height: 100px;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.cd-horizontal-timeline .events-wrapper {
+  position: relative;
+  height: 100%;
+  margin: 0 40px;
+  overflow: hidden;
+}
+.cd-horizontal-timeline .events-wrapper::after, .cd-horizontal-timeline .events-wrapper::before {
+  /* these are used to create a shadow effect at the sides of the timeline */
+  content: '';
+  position: absolute;
+  z-index: 7;
+  top: 0;
+  height: 100%;
+  width: 20px;
+}
+.cd-horizontal-timeline .events-wrapper::before {
+  left: 0;
+  background-image: -webkit-linear-gradient( left , #f8f8f8, rgba(248, 248, 248, 0));
+  background-image: linear-gradient(to right, #f8f8f8, rgba(248, 248, 248, 0));
+}
+.cd-horizontal-timeline .events-wrapper::after {
+  right: 0;
+  background-image: -webkit-linear-gradient( right , #f8f8f8, rgba(248, 248, 248, 0));
+  background-image: linear-gradient(to left, #f8f8f8, rgba(248, 248, 248, 0));
+}
+.cd-horizontal-timeline .events {
+  /* this is the grey line/timeline */
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  top: 49px;
+  height: 2px;
+  /* width will be set using JavaScript */
+  background: #dfdfdf;
+  -webkit-transition: -webkit-transform 0.4s;
+  -moz-transition: -moz-transform 0.4s;
+  transition: transform 0.4s;
+}
+.cd-horizontal-timeline .filling-line {
+  /* this is used to create the green line filling the timeline */
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #7b9d6f;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -ms-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.cd-horizontal-timeline .events a {
+  position: absolute;
+  bottom: 0;
+  z-index: 7;
+  text-align: center;
+  font-size: 1.3rem;
+  padding-bottom: 15px;
+  color: #383838;
+  /* fix bug on Safari - text flickering while timeline translates */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.cd-horizontal-timeline .events a::after {
+  /* this is used to create the event spot */
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: auto;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: -5px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  border: 2px solid #dfdfdf;
+  background-color: #f8f8f8;
+  -webkit-transition: background-color 0.3s, border-color 0.3s;
+  -moz-transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.no-touch .cd-horizontal-timeline .events a:hover::after {
+  background-color: #7b9d6f;
+  border-color: #7b9d6f;
+}
+.cd-horizontal-timeline .events a.selected {
+  pointer-events: none;
+}
+.cd-horizontal-timeline .events a.selected::after {
+  background-color: #7b9d6f;
+  border-color: #7b9d6f;
+}
+.cd-horizontal-timeline .events a.older-event::after {
+  border-color: #7b9d6f;
+}
+@media only screen and (min-width: 1100px) {
+  .cd-horizontal-timeline {
+    margin: 6em auto;
+  }
+  .cd-horizontal-timeline::before {
+    /* never visible - this is used in jQuery to check the current MQ */
+    content: 'desktop';
+  }
+}
+
+.cd-timeline-navigation a {
+  /* these are the left/right arrows to navigate the timeline */
+  position: absolute;
+  z-index: 7;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  border: 2px solid #dfdfdf;
+  /* replace text with an icon */
+  overflow: hidden;
+  color: transparent;
+  text-indent: 100%;
+  white-space: nowrap;
+  -webkit-transition: border-color 0.3s;
+  -moz-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+.cd-timeline-navigation a::after {
+  /* arrow icon */
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url(../img/cd-arrow.svg) no-repeat 0 0;
+}
+.cd-timeline-navigation a.prev {
+  left: 0;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+  -moz-transform: translateY(-50%) rotate(180deg);
+  -ms-transform: translateY(-50%) rotate(180deg);
+  -o-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+.cd-timeline-navigation a.next {
+  right: 0;
+}
+.no-touch .cd-timeline-navigation a:hover {
+  border-color: #7b9d6f;
+}
+.cd-timeline-navigation a.inactive {
+  cursor: not-allowed;
+}
+.cd-timeline-navigation a.inactive::after {
+  background-position: 0 -16px;
+}
+.no-touch .cd-timeline-navigation a.inactive:hover {
+  border-color: #dfdfdf;
+}
+
+.cd-horizontal-timeline .events-content {
+  position: relative;
+  width: 100%;
+  margin: 2em 0;
+  overflow: hidden;
+  -webkit-transition: height 0.4s;
+  -moz-transition: height 0.4s;
+  transition: height 0.4s;
+}
+.cd-horizontal-timeline .events-content li {
+  position: absolute;
+  z-index: 7;
+  width: 100%;
+  left: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+  padding: 0 5%;
+  opacity: 0;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+.cd-horizontal-timeline .events-content li.selected {
+  /* visible event content */
+  position: relative;
+  z-index: 8;
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.cd-horizontal-timeline .events-content li.enter-right, .cd-horizontal-timeline .events-content li.leave-right {
+  -webkit-animation-name: cd-enter-right;
+  -moz-animation-name: cd-enter-right;
+  animation-name: cd-enter-right;
+}
+.cd-horizontal-timeline .events-content li.enter-left, .cd-horizontal-timeline .events-content li.leave-left {
+  -webkit-animation-name: cd-enter-left;
+  -moz-animation-name: cd-enter-left;
+  animation-name: cd-enter-left;
+}
+.cd-horizontal-timeline .events-content li.leave-right, .cd-horizontal-timeline .events-content li.leave-left {
+  -webkit-animation-direction: reverse;
+  -moz-animation-direction: reverse;
+  animation-direction: reverse;
+}
+.cd-horizontal-timeline .events-content li > * {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.cd-horizontal-timeline .events-content h2 {
+  font-weight: bold;
+  font-size: 2.6rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.cd-horizontal-timeline .events-content em {
+  display: block;
+  font-style: italic;
+  margin: 10px auto;
+}
+.cd-horizontal-timeline .events-content em::before {
+  content: '- ';
+}
+.cd-horizontal-timeline .events-content p {
+  font-size: 1.4rem;
+}
+.cd-horizontal-timeline .events-content em, .cd-horizontal-timeline .events-content p {
+  line-height: 1.6;
+}
+@media only screen and (min-width: 768px) {
+  .cd-horizontal-timeline .events-content h2 {
+    font-size: 7rem;
+  }
+  .cd-horizontal-timeline .events-content em {
+    font-size: 2rem;
+  }
+  .cd-horizontal-timeline .events-content p {
+    font-size: 1.8rem;
+  }
+}
+
+@-webkit-keyframes cd-enter-right {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+  }
+}
+@-moz-keyframes cd-enter-right {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0%);
+  }
+}
+@keyframes cd-enter-right {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
+@-webkit-keyframes cd-enter-left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+  }
+}
+@-moz-keyframes cd-enter-left {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0%);
+  }
+}
+@keyframes cd-enter-left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
+
+
+/* image slider */
+.cd-filter {
+  /* SVG animation style switcher - not needed in production */
+  margin-top: 1em;
+  text-align: center;
+}
+.cd-filter li {
+  display: inline-block;
+  margin: 4px;
+}
+.cd-filter a {
+  display: block;
+  border-bottom: 2px solid rgba(76, 92, 98, 0);
+  padding: .8em 1em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #4c5c62;
+}
+.no-touch .cd-filter a:hover {
+  border-bottom: 2px solid rgba(76, 92, 98, 0.6);
+}
+.cd-filter a.selected {
+  color: #00A7E1;
+  border-bottom: 2px solid rgba(0, 167, 225, 0.4);
+}
+.no-touch .cd-filter a.selected:hover {
+  border-bottom: 2px solid rgba(0, 167, 225, 0.4);
+}
+@media only screen and (min-width: 768px) {
+  .cd-filter {
+    margin-top: 2em;
+  }
+}
+
+/* --------------------------------
+
+Slider
+
+-------------------------------- */
+
+.cd-slider-wrap{
+  position:relative;
+  vertical-align:center;
+  width: 60%;
+  max-width: 1024px;
+  margin: 2em auto;
+  margin-bottom:35%;
+  /* hide horizontal scrollbar on IE11 */
+  z-index:1500 !important;
+}
+
+.cd-slider1 > li {
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  /* hide vertical scrollbar on IE11 */
+  overflow: hidden;
+}
+.cd-slider1 > li.visible {
+  position:absolute;
+  z-index: 5;
+  opacity: 1;
+}
+.cd-slider1 > li.is-animating {
+  z-index: 6;
+  opacity: 1;
+}
+
+.cd-slider1 .cd-svg-wrap {
+  /* using padding Hack to fix bug on IE - svg height not properly calculated */
+  height: 0;
+  padding-bottom: 57.15%;
+}
+
+.cd-slider-wrap svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------
+
+Slider navigation
+
+-------------------------------- */
+.cd-slider-nav li {
+  position: absolute;
+  z-index: 6;
+  margin-top: 30%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right:5px;
+  height: 48px;
+  width: 48px;
+}
+.cd-slider-nav li a {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  background: url(../img/cd-icon-arrows.svg) no-repeat 0 0;
+  -webkit-transition: -webkit-transform 0.2s;
+  -moz-transition: -moz-transform 0.2s;
+  transition: transform 0.2s;
+}
+.no-touch .cd-slider-nav li a:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.cd-slider-nav li:last-of-type {
+  left: 10px;
+  right: auto;
+}
+.cd-slider-nav li:last-of-type a {
+  background-position: -48px 0;
+}
+
+/* --------------------------------
+
+Slider dots/controls
+
+-------------------------------- */
+.cd-slider-control {
+  position: relative;
+  bottom: -420px;
+  left: 50%;
+  right: auto;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 6;
+  text-align: center;
+  width: 90%;
+}
+.cd-slider-control::after {
+  clear: both;
+  content: "";
+}
+.cd-slider-control li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.cd-slider-control li:last-of-type {
+  margin-right: 0;
+}
+.cd-slider-control li.selected a {
+  background-color: #ffffff;
+}
+.cd-slider-control a {
+  display: block;
+  /* image replacement */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+.no-touch .cd-slider-control a:hover {
+  background-color: #ffffff;
+}
