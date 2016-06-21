@@ -1,2 +1,2 @@
 # iste_industrial_visit
-ISTE industrail visit page
+ISTE industrial visit page
